@@ -158,4 +158,29 @@ public class StudentDaoMySqlImpl implements IStudentDao{
 		return list;
 	}
 
+	@Override
+	public boolean checkStudent(String name) {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		
+		connection = JDBCUtil.getConnection();
+		String sql = "SELECT * FROM student WHERE name=?;";
+		boolean isFound = false;
+		
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, name);
+			resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				isFound = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(connection, preparedStatement);
+		}
+		
+		return isFound;
+	}
 }

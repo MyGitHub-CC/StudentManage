@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.situ.student.entity.Student;
+import com.situ.student.exception.NameRepeatException;
 import com.situ.student.service.IStudentService;
 import com.situ.student.service.impl.StudentServiceImpl;
 
@@ -66,7 +67,12 @@ public class StudentView {
 		String gender = scanner.next();
 		
 		Student student = new Student(name, age, gender);
-		boolean result = studentService.add(student);
+		boolean result = false;
+		try {
+			result = studentService.add(student);
+		} catch (NameRepeatException e) {
+			e.printStackTrace();
+		}
 		if (result) {
 			System.out.println("添加成功");
 		} else {
