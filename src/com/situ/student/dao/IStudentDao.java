@@ -37,7 +37,7 @@ public interface IStudentDao {
 	 * @param id
 	 * @return
 	 */
-	public abstract boolean findById(int id);
+	public abstract Student findById(int id);
 	
 	/**
 	 * 查询所有的学生信息
