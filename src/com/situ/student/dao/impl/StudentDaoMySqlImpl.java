@@ -72,7 +72,7 @@ public class StudentDaoMySqlImpl implements IStudentDao{
 		PreparedStatement preparedStatement = null;
 		
 		connection = JDBCUtil.getConnection();
-		String sql = "UPDATE student SET NAME=?,age=?,gender=? WHERE id=3;";
+		String sql = "UPDATE student SET NAME=?,age=?,gender=? WHERE id=?;";
 		boolean result = false;
 		
 		try {
